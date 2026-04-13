@@ -1,10 +1,11 @@
-﻿using Cricut.Orders.Domain.Models;
+using Cricut.Orders.Domain.Models;
 
 namespace Cricut.Orders.Domain
 {
     public interface IOrderDomain
     {
         Task<Order> CreateNewOrderAsync(Order order);
+        Task<Order[]> GetOrdersByCustomerIdAsync(int customerId);
     }
 
     public class OrderDomain : IOrderDomain
@@ -20,6 +21,11 @@ namespace Cricut.Orders.Domain
         {
             var updatedOrder = await _orderStore.SaveOrderAsync(order);
             return updatedOrder;
+        }
+
+        public async Task<Order[]> GetOrdersByCustomerIdAsync(int customerId)
+        {
+            return await _orderStore.GetAllOrdersForCustomerAsync(customerId);
         }
     }
 }
