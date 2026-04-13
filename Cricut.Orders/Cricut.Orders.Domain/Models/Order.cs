@@ -1,4 +1,4 @@
-﻿namespace Cricut.Orders.Domain.Models
+namespace Cricut.Orders.Domain.Models
 {
     public class Order
     {
@@ -13,7 +13,7 @@
             get
             {
                 var orderItemTotal = OrderItems.Sum(x => x.Total);
-                if (orderItemTotal > DiscountThreshold)
+                if (orderItemTotal >= DiscountThreshold)
                 {
                     orderItemTotal = Apply10PercentDiscount(orderItemTotal);
                 }

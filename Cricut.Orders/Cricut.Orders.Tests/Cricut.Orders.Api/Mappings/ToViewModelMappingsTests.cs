@@ -1,5 +1,6 @@
-﻿using AutoBogus;
+using AutoBogus;
 using Cricut.Orders.Api.Mappings;
+using Cricut.Orders.Api.ViewModels;
 using Cricut.Orders.Domain.Models;
 using FluentAssertions;
 
