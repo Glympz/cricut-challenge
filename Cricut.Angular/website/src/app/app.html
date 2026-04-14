@@ -1,6 +1,13 @@
+@if (viewModel | async; as viewModel) {
 <header>
     <nav>
         <a routerLink="/">Home</a>
+        @if (viewModel.isSignedIn) {
+            Welcome, {{ viewModel.usersName }}
+            <button (click)="signOut()">Sign out</button>
+        } @else {
+            <a routerLink="/sign-in">Sign-in</a>
+        }
     </nav>
 </header>
 
@@ -8,6 +15,7 @@
 
 <footer>
     <div>
-        Created by Jake Roberts © {{ copyrightYear }}
+        Created by Jake Roberts © {{ viewModel.copyrightYear }}
     </div>
 </footer>
+}
