@@ -1,38 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment.development';
+import { Observable, of } from 'rxjs';
 import { CustomerViewModel, NewOrderViewModel, OrderViewModel } from './api.types';
-
-/// TODO: Implement XSRF protection
+import { getCustomerByEmail, getCustomerViewModel, getOrderViewModel, getOrderViewModelsByCustomer, submitOrderViewModel } from './api.fake.datasource';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService {
-    private baseUrl: string;
-
-    constructor(private http: HttpClient) {
-        this.baseUrl = environment.apiBaseUrl;
-    }
-
     getCustomer(customerId: number): Observable<CustomerViewModel> {
-        return this.http.get<CustomerViewModel>(`${this.baseUrl}/v1/customers/${customerId}`);
+        return of(getCustomerViewModel(customerId));
     }
 
-    getOrder(orderId: number): Observable<OrderViewModel> {
-        return this.http.get<OrderViewModel>(`${this.baseUrl}/v1/orders/${orderId}`);
+    getOrder(orderId: number): Observable<OrderViewModel | undefined> {
+        return of(getOrderViewModel(orderId));
     }
 
     getOrdersByCustomer(customerId: number): Observable<OrderViewModel[]> {
-        return this.http.get<OrderViewModel[]>(`${this.baseUrl}/v1/customers/${customerId}/orders`);
+        return of(getOrderViewModelsByCustomer(customerId));
     }
 
-    submitOrder(newOrder: NewOrderViewModel): Observable<OrderViewModel> {
-        return this.http.post<OrderViewModel>(`${this.baseUrl}/v1/orders`, newOrder);
+    submitOrder(newOrder: NewOrderViewModel): OrderViewModel {
+        return submitOrderViewModel(newOrder);
     }
 
-    signIn(email: string) {
-        return this.http.post(`${this.baseUrl}/v1/auth/signin`, { email });
+    signIn(email: string): CustomerViewModel {
+        return getCustomerByEmail(email);
     }
 }
