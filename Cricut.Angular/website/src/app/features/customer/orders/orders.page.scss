@@ -1,0 +1,30 @@
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    > .order-row {
+        max-width: 600px;
+        overflow: hidden;
+
+        mat-card-header {
+            h3 {
+                margin: 0;
+            }
+        }
+
+        a {
+            display: block;
+            color: unset;
+            text-decoration: none !important;
+
+            &:hover, &:focus, &:active {
+                background-color: #CCCCCC;
+            }
+        }
+
+        .label {
+            font-weight: bold;
+        }
+    }
+}

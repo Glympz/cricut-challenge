@@ -6,14 +6,10 @@
             </div>
 
             @if (viewModel | async; as viewModel) {
-                <div>
-                    <a matIconButton class="toolbar-button" routerLink="/" title="Home"><mat-icon>home</mat-icon></a>
-                </div>
                 @if (viewModel.isSignedIn) {
-                    <div>
-                        Welcome, {{ viewModel.usersName }}
-                        <button matButton class="toolbar-button" (click)="signOut()">Sign out</button>
-                    </div>
+                    Welcome, {{ viewModel.usersName }}
+                    <a matIconButton class="toolbar-button" routerLink="/" title="Home"><mat-icon>home</mat-icon></a>
+                    <button matButton class="toolbar-button" (click)="signOut()">Sign out</button>
                 } @else {
                     <a matButton class="toolbar-button" routerLink="/sign-in">Sign-in</a>
                 }

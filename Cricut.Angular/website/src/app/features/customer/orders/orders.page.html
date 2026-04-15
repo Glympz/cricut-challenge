@@ -1,16 +1,20 @@
 <h2>Your Orders</h2>
 
 @if (viewModel | async; as viewModel) {
-
-    <div>
+    <div class="order-list">
         @for (order of viewModel.orders; track order.id) {
-            <div>
-                <a class="order-row" [routerLink]="'/customer/order/' + order.id">
-                <div>{{ order.status }} </div>
-                <div>{{ order.orderItems.length }}</div>
-                <div>{{ order.total }}</div>
+            <mat-card class="order-row" appearance="outlined">
+                <a [routerLink]="'/customer/order/' + order.id">
+                    <mat-card-header>
+                        <h3>Order #{{ order.id }}</h3>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div>{{ order.status | mapOrderStatus }}</div>
+                        <div><span class="label">Number of Items:</span> {{ order.orderItems.length }}</div>
+                        <div><span class="label">Order Total:</span> {{ order.total | currency }}</div>
+                    </mat-card-content>
                 </a>
-            </div>
+            </mat-card>
         }
     </div>
 

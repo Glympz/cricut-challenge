@@ -1,10 +1,14 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { EMPTY, map, Observable, of, switchMap, tap } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service/api.service';
 import { OrderViewModel } from '../../../core/services/api.service/api.types';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MapOrderStatusPipe } from '../../../shared/pipes/order-status.pipe';
 
 interface OrderDetailPageViewModel {
     order: OrderViewModel | undefined;
@@ -17,7 +21,7 @@ interface DeleteOrderConfirmationDialogData {
 @Component({
     selector: 'app-order-detail',
     standalone: true,
-    imports: [AsyncPipe, MatDialogModule],
+    imports: [AsyncPipe, CommonModule, CurrencyPipe, MapOrderStatusPipe, MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, RouterModule],
     templateUrl: './order-detail.page.html',
     styleUrl: './order-detail.page.scss',
 })

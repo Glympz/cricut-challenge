@@ -4,7 +4,9 @@ import { ApiService } from '../../../core/services/api.service/api.service';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MapOrderStatusPipe } from '../../../shared/pipes/order-status.pipe';
 
 interface OrdersPageViewModel {
     orders: OrderViewModel[];
@@ -13,7 +15,7 @@ interface OrdersPageViewModel {
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [AsyncPipe, RouterModule],
+  imports: [AsyncPipe, CurrencyPipe, MapOrderStatusPipe, MatCardModule, RouterModule],
   templateUrl: './orders.page.html',
   styleUrl: './orders.page.scss',
 })
