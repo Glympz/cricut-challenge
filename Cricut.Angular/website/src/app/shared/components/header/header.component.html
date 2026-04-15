@@ -1,0 +1,23 @@
+<header>
+    <nav>
+        <mat-toolbar class="main-toolbar">
+            <div class="nav-title">
+                A.C.M.E. Ordering System
+            </div>
+
+            @if (viewModel | async; as viewModel) {
+                <div>
+                    <a matIconButton class="toolbar-button" routerLink="/" title="Home"><mat-icon>home</mat-icon></a>
+                </div>
+                @if (viewModel.isSignedIn) {
+                    <div>
+                        Welcome, {{ viewModel.usersName }}
+                        <button matButton class="toolbar-button" (click)="signOut()">Sign out</button>
+                    </div>
+                } @else {
+                    <a matButton class="toolbar-button" routerLink="/sign-in">Sign-in</a>
+                }
+            }
+        </mat-toolbar>
+    </nav>
+</header>

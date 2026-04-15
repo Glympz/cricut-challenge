@@ -1,21 +1,5 @@
-@if (viewModel | async; as viewModel) {
-<header>
-    <nav>
-        <a routerLink="/">Home</a>
-        @if (viewModel.isSignedIn) {
-            Welcome, {{ viewModel.usersName }}
-            <button (click)="signOut()">Sign out</button>
-        } @else {
-            <a routerLink="/sign-in">Sign-in</a>
-        }
-    </nav>
-</header>
-
-<router-outlet />
-
-<footer>
-    <div>
-        Created by Jake Roberts © {{ viewModel.copyrightYear }}
-    </div>
-</footer>
-}
+<app-header />
+<div class="content-container">
+    <router-outlet />
+</div>
+<app-footer />

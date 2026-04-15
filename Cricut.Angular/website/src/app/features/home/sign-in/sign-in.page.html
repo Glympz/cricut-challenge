@@ -1,2 +1,11 @@
-Email: <input type="text" placeholder="Email Address" [(ngModel)]="signInForm.email">
-<button (click)="signIn()">Sign In</button>
+<h2>Sign in</h2>
+
+<div>
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" placeholder="Email Address" [(ngModel)]="signInForm.email">
+    </mat-form-field>
+</div>
+<div>
+    <button matButton="filled" (click)="signIn()">Sign In</button>
+</div>

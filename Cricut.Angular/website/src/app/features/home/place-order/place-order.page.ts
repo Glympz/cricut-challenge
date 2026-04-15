@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
-import { first, from, of, switchMap } from 'rxjs';
+import { first, switchMap } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service/api.service';
 import { Router } from '@angular/router';
 import { NewOrderViewModel, OrderItemViewModel } from '../../../core/services/api.service/api.types';
 import { FormsModule } from '@angular/forms';
 import { createProduct } from '../../../core/services/api.service/api.fake.datasource';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 interface PlaceOrderForm {
     item1Selected: boolean;
@@ -13,14 +16,10 @@ interface PlaceOrderForm {
     item3Selected: boolean;
 }
 
-interface PlaceOrderPageViewModel {
-
-}
-
 @Component({
     selector: 'app-place-order.page',
     standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatCheckboxModule],
     templateUrl: './place-order.page.html',
     styleUrl: './place-order.page.scss',
 })
@@ -35,9 +34,7 @@ export class PlaceOrderPageComponent {
         private readonly authService: AuthService,
         private readonly apiService: ApiService,
         private readonly router: Router
-    ) {
-
-    }
+    ) { }
 
     placeOrder(): void {
         this.authService.authenticatedCustomer.pipe(

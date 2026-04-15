@@ -1,8 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { EMPTY, first, Observable } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 interface SignInPageViewModel {
 
@@ -15,7 +18,7 @@ interface SignInForm {
 @Component({
     selector: 'app-sign-in',
     standalone: true,
-    imports: [FormsModule, RouterModule],
+    imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, RouterModule],
     templateUrl: './sign-in.page.html',
     styleUrl: './sign-in.page.scss',
 })

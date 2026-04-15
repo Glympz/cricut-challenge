@@ -1,0 +1,22 @@
+:host {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.main-toolbar {
+    background-color: #2E3F81;
+    color: #FFFFFF;
+
+    > .nav-title {
+        flex-grow: 1;
+    }
+
+    .toolbar-button {
+        color: #FFFFFF !important;
+    }
+}
