@@ -24,7 +24,7 @@ export class App {
     }
 
     private getViewModel(): Observable<AppViewModel> {
-        return this.authService.AuthenticatedCustomer.pipe(
+        return this.authService.authenticatedCustomer.pipe(
             map(customer => {
                 return {
                     isSignedIn: !!customer,

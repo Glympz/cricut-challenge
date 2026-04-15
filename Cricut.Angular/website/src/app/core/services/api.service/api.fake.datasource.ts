@@ -1,4 +1,4 @@
-import { CustomerViewModel, NewOrderViewModel, OrderItemViewModel, OrderStatus, OrderViewModel } from "./api.types";
+import { CustomerViewModel, NewOrderViewModel, OrderItemViewModel, OrderStatus, OrderViewModel, ProductViewModel } from "./api.types";
 
 export function getCustomerViewModel(customerId: number): CustomerViewModel {
     let customer: CustomerViewModel | undefined = fakeCustomers.find(customer => customer.id === customerId);
@@ -54,6 +54,18 @@ export function submitOrderViewModel(newOrder: NewOrderViewModel): OrderViewMode
     return order;
 }
 
+export function deleteOrder(orderId: number): void {
+    for (const orders of fakeCustomerOrders.values()) {
+        const orderIdx = orders.findIndex(order => order.id === orderId);
+
+        if (orderIdx >= 0) {
+            orders.splice(orderIdx, 1);
+        }
+    }
+
+    fakeOrders.delete(orderId);
+}
+
 const fakeCustomers: CustomerViewModel[] = [];
 
 const fakeCustomerOrders: Map<number, OrderViewModel[]> = ((customerIds: number[]) => {
@@ -67,7 +79,7 @@ const fakeCustomerOrders: Map<number, OrderViewModel[]> = ((customerIds: number[
         const customerOrders: OrderViewModel[] = [];
 
         for (let i = 0; i < 10; i++) {
-            const orderItems: OrderItemViewModel[] = [];
+            const orderItems: OrderItemViewModel[] = createOrderItems();
 
             const order: OrderViewModel = {
                 id: orderGroupNumber + i,
@@ -118,3 +130,39 @@ function createCustomer(customerId: number | undefined, email: string | undefine
         address: `1234 Street`
     };
 }
+
+function createOrderItems(): OrderItemViewModel[] {
+    const orderItems: OrderItemViewModel[] = [];
+
+    for (let i = 0; i < 5; i++) {
+        orderItems.push({
+            product: createProduct(),
+            quantity: randIntInRange(1, 10),
+        });
+    }
+
+    return orderItems;
+}
+
+export function createProduct(): ProductViewModel {
+    const id = randIntInRange(1000, 10000);
+    const price = randIntInRange(100, 3000) / 100;
+
+    return {
+        id,
+        name: `Product ${id}`,
+        price,
+    };
+}
+
+function randIntInRange(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+
+  if (max < min) {
+    [max, min] = [min, max];
+  }
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+

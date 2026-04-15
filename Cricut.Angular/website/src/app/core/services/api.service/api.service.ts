@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { CustomerViewModel, NewOrderViewModel, OrderViewModel } from './api.types';
-import { getCustomerByEmail, getCustomerViewModel, getOrderViewModel, getOrderViewModelsByCustomer, submitOrderViewModel } from './api.fake.datasource';
+import { deleteOrder, getCustomerByEmail, getCustomerViewModel, getOrderViewModel, getOrderViewModelsByCustomer, submitOrderViewModel } from './api.fake.datasource';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService {
-    getCustomer(customerId: number): Observable<CustomerViewModel> {
+    getCustomer(customerId: number): Observable<CustomerViewModel | undefined> {
         return of(getCustomerViewModel(customerId));
     }
 
@@ -19,11 +19,16 @@ export class ApiService {
         return of(getOrderViewModelsByCustomer(customerId));
     }
 
-    submitOrder(newOrder: NewOrderViewModel): OrderViewModel {
-        return submitOrderViewModel(newOrder);
+    submitOrder(newOrder: NewOrderViewModel): Observable<OrderViewModel> {
+        return of(submitOrderViewModel(newOrder));
     }
 
-    signIn(email: string): CustomerViewModel {
-        return getCustomerByEmail(email);
+    deleteOrder(orderId: number): Observable<undefined> {
+        deleteOrder(orderId);
+        return of(undefined);
+    }
+
+    signIn(email: string): Observable<CustomerViewModel | undefined> {
+        return of(getCustomerByEmail(email));
     }
 }
