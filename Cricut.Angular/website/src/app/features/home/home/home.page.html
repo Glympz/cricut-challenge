@@ -1,8 +1,11 @@
-<p>home.component works!</p>
+@if (viewModel | async; as viewModel) {
+    <h2>Welcome to A.C.M.E. Orders</h2>
 
-<ul>
-    <li><a routerLink="/sign-in">Sign In</a></li>
-    <li><a routerLink="/customer/orders">Orders</a></li>
-    <li><a routerLink="/customer/order/1234">Order 1234</a></li>
-    <li><a routerLink="/some-other-page">Not Found</a></li>
-</ul>
+    @if (viewModel.isSignedIn) {
+        <a routerLink="/customer/orders">View your orders</a>
+        or <a routerLink="/place-order">Place an order...</a>
+    } @else {
+        <a routerLink="/place-order">Place an order...</a>
+        or <a routerLink="/sign-in">Sign-in</a>
+    }
+}

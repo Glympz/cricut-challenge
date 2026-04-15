@@ -33,7 +33,7 @@ export class SignInPageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authService.IsSignedIn.pipe(first()).subscribe(isSignedIn => {
+        this.authService.isSignedIn.pipe(first()).subscribe(isSignedIn => {
             if (isSignedIn) {
                 this.router.navigate(['/']);
             }
@@ -45,10 +45,13 @@ export class SignInPageComponent implements OnInit {
     }
 
     signIn(): void {
-        if (this.authService.signIn(this.signInForm.email, '')) {
-            this.router.navigate(['/']);
-        } else {
-            alert('sign-in-failed');
-        }
+        this.authService.signIn(this.signInForm.email, '').pipe(first())
+        .subscribe(isSignedIn => {
+            if (isSignedIn) {
+                this.router.navigate(['/']);
+            } else {
+                alert('sign-in-failed');
+            }
+        });
     }
  }

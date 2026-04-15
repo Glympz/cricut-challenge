@@ -1,1 +1,19 @@
-<p>orders.component works!</p>
+<h2>Your Orders</h2>
+
+@if (viewModel | async; as viewModel) {
+
+    <div>
+        @for (order of viewModel.orders; track order.id) {
+            <div>
+                <a class="order-row" [routerLink]="'/customer/order/' + order.id">
+                <div>{{ order.status }} </div>
+                <div>{{ order.orderItems.length }}</div>
+                <div>{{ order.total }}</div>
+                </a>
+            </div>
+        }
+    </div>
+
+} @else {
+    <div>Loading...</div>
+}

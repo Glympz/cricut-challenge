@@ -1,1 +1,15 @@
-<p>place-order.page works!</p>
+<h2>Place an Order</h2>
+
+<form>
+    <div>
+        <label><input type="checkbox" [(ngModel)]="placeOrderForm.item1Selected" name="item1Selected"> Item 1</label>
+    </div>
+    <div>
+        <label><input type="checkbox" [(ngModel)]="placeOrderForm.item2Selected" name="item2Selected"> Item 2</label>
+    </div>
+    <div>
+        <label><input type="checkbox" [(ngModel)]="placeOrderForm.item3Selected" name="item3Selected"> Item 3</label>
+    </div>
+
+    <button type="button" (click)="placeOrder()">Place Order</button>
+</form>
