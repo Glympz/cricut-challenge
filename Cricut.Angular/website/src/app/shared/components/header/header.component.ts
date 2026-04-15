@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +28,7 @@ export class HeaderComponent {
 
     private getViewModel(): Observable<AppViewModel> {
         return this.authService.authenticatedCustomer.pipe(
+            startWith(undefined),
             map(customer => {
                 return {
                     isSignedIn: !!customer,
