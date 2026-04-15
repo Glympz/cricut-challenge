@@ -10,7 +10,6 @@ export class AuthService {
     private readonly authenticatedCustomer$ = new ReplaySubject<CustomerViewModel | undefined>(1);
 
     constructor(private readonly apiService: ApiService) {
-        this.authenticatedCustomer$.next(undefined);
     }
 
     get authenticatedCustomer(): Observable<CustomerViewModel | undefined> {
