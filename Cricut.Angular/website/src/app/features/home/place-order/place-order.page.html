@@ -1,0 +1,12 @@
+<h2>Place an Order</h2>
+
+<div>
+    <div>
+        <mat-checkbox [(ngModel)]="placeOrderForm.item1Selected" name="item1Selected"> Item 1</mat-checkbox>
+        <mat-checkbox [(ngModel)]="placeOrderForm.item2Selected" name="item2Selected"> Item 2</mat-checkbox>
+        <mat-checkbox [(ngModel)]="placeOrderForm.item3Selected" name="item3Selected"> Item 3</mat-checkbox>
+    </div>
+    <div class="action-buttons">
+        <button matButton="filled" type="button" (click)="placeOrder()">Place Order</button>
+    </div>
+</div>

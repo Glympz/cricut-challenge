@@ -1,0 +1,10 @@
+@if (viewModel | async; as viewModel) {
+    <h2>Welcome to A.C.M.E. Orders</h2>
+
+    @if (viewModel.isSignedIn) {
+        <a routerLink="/customer/orders">View your orders</a>
+        or <a routerLink="/place-order">Place an order...</a>
+    } @else {
+        <a routerLink="/sign-in">Sign-in</a> to place an order.
+    }
+}

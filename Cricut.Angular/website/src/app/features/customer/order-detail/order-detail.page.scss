@@ -1,0 +1,42 @@
+.order-detail {
+    margin-top: 32px;
+    max-width: 600px;
+    overflow: hidden;
+
+    mat-card-header {
+        h3 {
+            margin: 0;
+        }
+    }
+
+    mat-card-actions {
+        border-top: 1px solid #C1C1C1;
+        margin-top: 16px;
+    }
+
+    a {
+        display: block;
+        color: unset;
+        text-decoration: none !important;
+
+        &:hover, &:focus, &:active {
+            background-color: #CCCCCC;
+        }
+    }
+
+    .label {
+        font-weight: bold;
+    }
+}
+
+.products {
+    margin: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+
+    .header {
+        font-weight: bold;
+        border-bottom: 1px solid #9A9A9A;
+    }
+}
